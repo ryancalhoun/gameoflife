@@ -2,8 +2,8 @@ require 'gameoflife'
 module Driver
 	class Console
 		def initialize
-			w,h = `stty size`.chomp.split.map &:to_i
-			@board = GameOfLife::Board.new w, h
+			h,w = `stty size`.chomp.split.map &:to_i
+			@board = GameOfLife::Board.new h, w
 			@board.randomize!
 			@iteration = GameOfLife::Iteration.new @board
 		end
