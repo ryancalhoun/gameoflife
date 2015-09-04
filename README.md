@@ -1,18 +1,19 @@
 # gameoflife
 Conway's Game of Life
 
-# Run unit tests
+## Run unit tests
 
 	$ rake test
 
-# Run game in console 
+## Run game
+In the console:
 
 	$ rake console
 
-# Run game in web browser with default port 8080 
+In web browser with default port 8080:
 
 	$ rake web
 
-# Run game in web browser with custom port
+In web browser with custom port:
 
 	$ rake web PORT=9000
