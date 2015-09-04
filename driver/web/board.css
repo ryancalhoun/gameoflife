@@ -1,0 +1,22 @@
+table {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 40px;
+}
+td {
+	border-style: none;
+	max-width: 5px;
+	max-height: 5px;
+	overflow: hidden;
+}
+div.cell {
+	height: 5px;
+	width: 5px;
+}
+.alive {
+	background-color: black;
+}
+.dead {
+	background-color: white;
+}
+
