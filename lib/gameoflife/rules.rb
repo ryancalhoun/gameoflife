@@ -1,7 +1,9 @@
 module GameOfLife
-	class Iteration
+	class Rules
+		attr_reader :iteration
 		def initialize(board)
 			@board = board
+			@iteration = 0
 		end
 		def update!
 			updates = {}
@@ -21,6 +23,7 @@ module GameOfLife
 					@board[i][j] = val
 				}
 			}
+			@iteration += 1
 		end
 
 		def count_neighbors(i, j)

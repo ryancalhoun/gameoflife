@@ -1,3 +1,3 @@
 require 'gameoflife/board'
-require 'gameoflife/iteration'
+require 'gameoflife/rules'
 

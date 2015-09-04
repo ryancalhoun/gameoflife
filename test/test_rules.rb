@@ -1,8 +1,8 @@
 require 'gameoflife/board'
-require 'gameoflife/iteration'
+require 'gameoflife/rules'
 require 'test/unit'
 
-class TestIteration < Test::Unit::TestCase
+class TestRules < Test::Unit::TestCase
 	def testCountZeroNeighbors
 		b = GameOfLife::Board.new 3, 3
 =begin
@@ -10,8 +10,8 @@ class TestIteration < Test::Unit::TestCase
 		. . .
         . . .
 =end
-		it = GameOfLife::Iteration.new b
-		assert_equal 0, it.count_neighbors(1, 1)
+		rules = GameOfLife::Rules.new b
+		assert_equal 0, rules.count_neighbors(1, 1)
 	end
 	def testCountRowNeighbors
 		b = GameOfLife::Board.new 3, 3
@@ -22,8 +22,8 @@ class TestIteration < Test::Unit::TestCase
 		x . x
         . . .
 =end
-		it = GameOfLife::Iteration.new b
-		assert_equal 2, it.count_neighbors(1, 1)
+		rules = GameOfLife::Rules.new b
+		assert_equal 2, rules.count_neighbors(1, 1)
 	end
 	def testCountColumnNeighbors
 		b = GameOfLife::Board.new 3, 3
@@ -34,8 +34,8 @@ class TestIteration < Test::Unit::TestCase
 		. . .
         . x .
 =end
-		it = GameOfLife::Iteration.new b
-		assert_equal 2, it.count_neighbors(1, 1)
+		rules = GameOfLife::Rules.new b
+		assert_equal 2, rules.count_neighbors(1, 1)
 	end
 	def testCountDiagonalNeighbors
 		b = GameOfLife::Board.new 3, 3
@@ -48,8 +48,8 @@ class TestIteration < Test::Unit::TestCase
 		. . .
         x . x
 =end
-		it = GameOfLife::Iteration.new b
-		assert_equal 4, it.count_neighbors(1, 1)
+		rules = GameOfLife::Rules.new b
+		assert_equal 4, rules.count_neighbors(1, 1)
 	end
 	def testUpdateZeroNeighbors
 		b = GameOfLife::Board.new 3, 3
@@ -59,8 +59,8 @@ class TestIteration < Test::Unit::TestCase
 		. x .
         . . .
 =end
-		it = GameOfLife::Iteration.new b
-		it.update!
+		rules = GameOfLife::Rules.new b
+		rules.update!
 		assert ! b[1][1]
 	end
 	def testUpdateOneNeighbor
@@ -72,8 +72,8 @@ class TestIteration < Test::Unit::TestCase
 		. x .
         . . .
 =end
-		it = GameOfLife::Iteration.new b
-		it.update!
+		rules = GameOfLife::Rules.new b
+		rules.update!
 		assert ! b[1][1]
 	end
 	def testUpdateTwoNeighbors
@@ -86,8 +86,8 @@ class TestIteration < Test::Unit::TestCase
 		. x .
         . x .
 =end
-		it = GameOfLife::Iteration.new b
-		it.update!
+		rules = GameOfLife::Rules.new b
+		rules.update!
 		assert b[1][1]
 	end
 	def testUpdateFourNeighbors
@@ -102,8 +102,8 @@ class TestIteration < Test::Unit::TestCase
 		x x x
         . x .
 =end
-		it = GameOfLife::Iteration.new b
-		it.update!
+		rules = GameOfLife::Rules.new b
+		rules.update!
 		assert ! b[1][1]
 	end
 	def testUpdateDeadTwoNeighbors
@@ -115,8 +115,8 @@ class TestIteration < Test::Unit::TestCase
 		. . .
         . x .
 =end
-		it = GameOfLife::Iteration.new b
-		it.update!
+		rules = GameOfLife::Rules.new b
+		rules.update!
 		assert ! b[1][1]
 	end
 	def testUpdateDeadThreeNeighbors
@@ -129,8 +129,8 @@ class TestIteration < Test::Unit::TestCase
 		x . .
         . x .
 =end
-		it = GameOfLife::Iteration.new b
-		it.update!
+		rules = GameOfLife::Rules.new b
+		rules.update!
 		assert b[1][1]
 	end
 	def testUpdateDeadFourNeighbors
@@ -144,8 +144,8 @@ class TestIteration < Test::Unit::TestCase
 		x . x
         . x .
 =end
-		it = GameOfLife::Iteration.new b
-		it.update!
+		rules = GameOfLife::Rules.new b
+		rules.update!
 		assert ! b[1][1]
 	end
 	def testUpdateAdjacentNeighbors
@@ -161,8 +161,8 @@ class TestIteration < Test::Unit::TestCase
 		x x .
         x x .
 =end
-		it = GameOfLife::Iteration.new b
-		it.update!
+		rules = GameOfLife::Rules.new b
+		rules.update!
 =begin
 		x . .
 		. . x

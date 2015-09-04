@@ -5,7 +5,7 @@ module Driver
 			h,w = `stty size`.chomp.split.map &:to_i
 			@board = GameOfLife::Board.new h-1, w
 			@board.randomize!
-			@iteration = GameOfLife::Iteration.new @board
+			@rules = GameOfLife::Rules.new @board
 		end
 
 		def show
@@ -16,7 +16,7 @@ module Driver
 				}
 				puts
 			}
-			print "Press Ctrl+C to stop..."
+			print "Game Of Life [#{@board.rows}x#{@board.cols}] Iteration #{@rules.iteration}. Press Ctrl+C to stop..."
 		end
 
 		def run
@@ -24,10 +24,11 @@ module Driver
 				loop {
 					show
 					sleep 0.5
-					@iteration.update!
+					@rules.update!
 				}
 			rescue Interrupt
 				print "\033[#{@board.rows};1H"
+				puts
 				puts
 			end
 		end
