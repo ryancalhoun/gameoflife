@@ -1,4 +1,5 @@
 require 'gameoflife'
+require 'json'
 require 'socket'
 
 port = (ARGV.first || 8080).to_i
@@ -40,7 +41,7 @@ while(conn = accept(s))
 					board.randomize!
 					rules = GameOfLife::Rules.new board
 				end	
-				response = board.to_json
+				response = JSON.generate :board => board.to_a, :iteration => rules.iteration
 				conn.write "HTTP/1.1 200 OK\r\nContent-Length:#{response.size}\r\n\r\n#{response}"
 			else
 				file = File.join(File.dirname(__FILE__), 'web', path)

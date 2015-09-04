@@ -1,4 +1,3 @@
-require 'json'
 module GameOfLife
 	class Board
 		attr_reader :rows, :cols
@@ -22,8 +21,8 @@ module GameOfLife
 				yield row
 			}
 		end
-		def to_json
-			JSON.generate :board => @board.map {|row| row.to_a }
+		def to_a
+			@board.map {|row| row.to_a }
 		end
 
 		class Row

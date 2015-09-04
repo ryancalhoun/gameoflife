@@ -23,8 +23,8 @@ class TestBoard < Test::Unit::TestCase
 			@board[2][99] = true
 		}
 	end
-	def testToJson
+	def testToArray
 		@board[1][2] = true
-		assert_equal "{\"board\":[[false,false,false],[false,false,true],[false,false,false]]}", @board.to_json
+		assert_equal [[false,false,false],[false,false,true],[false,false,false]], @board.to_a
 	end
 end

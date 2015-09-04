@@ -2,8 +2,13 @@ var board = function() {
 	var rows = Math.floor($(window).height() / 10);
 	var cols = Math.floor($(window).width() / 10);
 
+	$('#rows').html(rows);
+	$('#cols').html(cols);
+
 	var table = $('#board');
 	var data = [];
+
+	var it = $('#iteration');
 
 	for(var i = 0; i < rows; ++i)
 	{
@@ -22,6 +27,7 @@ var board = function() {
 	}
 
 	var draw = function(b) {
+		it.html(b.iteration);
 		for(var i = 0; i < b.board.length; ++i)
 		{
 			var board_row = b.board[i];
