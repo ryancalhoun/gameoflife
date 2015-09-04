@@ -3,20 +3,20 @@ module Driver
 	class Console
 		def initialize
 			h,w = `stty size`.chomp.split.map &:to_i
-			@board = GameOfLife::Board.new h, w
+			@board = GameOfLife::Board.new h-1, w
 			@board.randomize!
 			@iteration = GameOfLife::Iteration.new @board
 		end
 
 		def show
-			print "\033[2J\033[H"
+			print "\033[H"
 			@board.rows.times {|i|
 				@board.cols.times {|j|
 					print @board[i][j] ? "#" : " "
 				}
-				puts if i < @board.rows - 1
+				puts
 			}
-			print "\033[H"
+			print "Press Ctrl+C to stop..."
 		end
 
 		def run
