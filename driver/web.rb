@@ -4,7 +4,19 @@ require 'socket'
 port = (ARGV.first || 8080).to_i
 
 s = TCPServer.new('*', port)
-while(conn = s.accept)
+puts "Server started at http://localhost:#{port}"
+print "Use Ctrl+C to stop..."
+STDOUT.flush
+
+def accept(s)
+	begin
+		s.accept
+	rescue Interrupt
+		nil
+	end
+end
+
+while(conn = accept(s))
 	Thread.new(conn) {|conn|
 		board = nil
 		rules = nil
@@ -44,3 +56,5 @@ while(conn = s.accept)
 		}
 	}
 end
+puts
+puts "Shutdown"
