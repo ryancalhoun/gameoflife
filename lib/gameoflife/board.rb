@@ -5,6 +5,13 @@ module GameOfLife
 			@rows, @cols = rows, cols
 			@board = Array.new(rows) { Row.new cols }
 		end
+		def randomize!(p = 0.2)
+			@rows.times {|i|
+				@cols.times {|j|
+					@board[i][j] = rand < p
+				}
+			}
+		end
 		def [](i)
 			GameOfLife.check_bounds i, @rows
 			@board[i]
