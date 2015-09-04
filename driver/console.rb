@@ -1,5 +1,5 @@
 require 'gameoflife'
-module Drivers
+module Driver
 	class Console
 		def initialize
 			w,h = `stty size`.chomp.split.map &:to_i
@@ -36,6 +36,6 @@ end
 
 if $0 == __FILE__
 	STDOUT.sync = true
-	driver = Drivers::Console.new
+	driver = Driver::Console.new
 	driver.run
 end
