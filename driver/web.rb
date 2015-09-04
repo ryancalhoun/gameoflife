@@ -1,7 +1,9 @@
 require 'gameoflife'
 require 'socket'
 
-s = TCPServer.new('*', 8080)
+port = (ARGV.first || 8080).to_i
+
+s = TCPServer.new('*', port)
 while(conn = s.accept)
 	Thread.new(conn) {|conn|
 		board = nil
@@ -31,8 +33,6 @@ while(conn = s.accept)
 			else
 				file = File.join(File.dirname(__FILE__), 'web', path)
 				file = File.join(file, 'index.html') if File.directory?file
-
-				puts file
 
 				if File.file?file
 					response = File.open(file, 'r') {|f| f.read}
