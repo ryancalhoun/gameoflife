@@ -16,6 +16,11 @@ module GameOfLife
 			GameOfLife.check_bounds i, @rows
 			@board[i]
 		end
+		def each_row
+			@board.each {|row|
+				yield row
+			}
+		end
 
 		class Row
 			def initialize(cols)
@@ -28,6 +33,11 @@ module GameOfLife
 			def []=(j,val)
 				GameOfLife.check_bounds j, @row.size
 				@row[j] = val
+			end
+			def each_column
+				@row.each {|col|
+					yield col
+				}
 			end
 		end
 	end

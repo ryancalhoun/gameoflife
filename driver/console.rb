@@ -10,9 +10,9 @@ module Driver
 
 		def show
 			print "\033[H"
-			@board.rows.times {|i|
-				@board.cols.times {|j|
-					print @board[i][j] ? "#" : " "
+			@board.each_row {|row|
+				row.each_column {|val|
+					print val ? "#" : " "
 				}
 				puts
 			}
