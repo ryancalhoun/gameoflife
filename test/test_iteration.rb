@@ -148,4 +148,32 @@ class TestIteration < Test::Unit::TestCase
 		it.update!
 		assert ! b[1][1]
 	end
+	def testUpdateAdjacentNeighbors
+		b = GameOfLife::Board.new 3, 3
+		b[0][0] = true
+		b[0][2] = true
+		b[1][0] = true
+		b[1][1] = true
+		b[2][0] = true
+		b[2][1] = true
+=begin
+		x . x
+		x x .
+        x x .
+=end
+		it = GameOfLife::Iteration.new b
+		it.update!
+=begin
+		x . .
+		. . x
+        x x .
+=end
+		assert b[0][0]
+		assert ! b[0][2] # died
+		assert ! b[1][0] # died
+		assert ! b[1][1] # died
+		assert b[1][2] # born
+		assert b[2][0]
+		assert b[2][1]
+	end
 end
