@@ -4,9 +4,21 @@ module GameOfLife
 			@board = board
 		end
 		def update!
+			updates = {}
 			@board.rows.times {|i|
 				@board.cols.times {|j|
-					# ...
+					n = count_neighbors i, j
+
+					if @board[i][j]
+						(updates[i]||= {})[j] = false if n < 2 || n > 3
+					else
+						(updates[i]||= {})[j] = true if n == 3
+					end
+				}
+			}
+			updates.each {|i,col|
+				col.each {|j,val|
+					@board[i][j] = val
 				}
 			}
 		end
